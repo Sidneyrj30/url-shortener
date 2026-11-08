@@ -1,4 +1,4 @@
-package com.junior.url_shortener.Entity;
+package com.junior.url_shortener.entity;
 
 import jakarta.persistence.*;
 
@@ -9,15 +9,18 @@ public class Link {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 1024)
     private String originalUrl;
-    private String shortUrl;
+
+    @Column(nullable = false, unique = true)
+    private String shortCode;
 
     public Link() {
     }
 
-    public Link(String originalUrl, String shortUrl) {
+    public Link(String originalUrl, String shortCode) {
         this.originalUrl = originalUrl;
-        this.shortUrl = shortUrl;
+        this.shortCode = shortCode;
     }
 
     public Long getId() {
@@ -36,11 +39,11 @@ public class Link {
         this.originalUrl = originalUrl;
     }
 
-    public String getShortUrl() {
-        return shortUrl;
+    public String getShortCode() {
+        return shortCode;
     }
 
-    public void setShortUrl(String shortUrl) {
-        this.shortUrl = shortUrl;
+    public void setShortCode(String shortCode) {
+        this.shortCode = shortCode;
     }
 }
